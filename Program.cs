@@ -71,11 +71,33 @@ namespace CorralonQuoter
                     .Contains(busqueda.ToLower()))
                 .ToList();
 
-            Console.WriteLine("Resultados para '" + busqueda + "':");
-            foreach (var p in resultados)
+            List<ItemPresupuesto> presupuesto = new List<ItemPresupuesto>();
+
+            var pila = catalogo.First(p => p.Codigo == "193473");
+            presupuesto.Add(new ItemPresupuesto { Producto = pila, Cantidad = 3m });
+
+            var cano = catalogo.First(p => p.Codigo == "254763");
+            presupuesto.Add(new ItemPresupuesto { Producto = cano, Cantidad = 2m });
+
+            decimal total = presupuesto.Sum(item => item.Subtotal);
+
+            string textoWhatsApp = GenerarTextoPresupuesto(presupuesto, total);
+            Console.WriteLine(textoWhatsApp);
+        }
+
+        static string GenerarTextoPresupuesto(List<ItemPresupuesto> presupuesto, decimal total)
+        {
+            string texto = "*PRESUPUESTO*\n";
+            texto += "Fecha: " + DateTime.Now.ToString("dd/MM/yyyy") + "\n\n";
+
+            foreach (var item in presupuesto)
             {
-                Console.WriteLine(p.Descripcion + " - $" + p.Precio);
+                texto += "• " + item.Producto.Descripcion + " — " + item.Cantidad + " x $" + item.Producto.Precio + " = $" + item.Subtotal + "\n";
             }
+
+            texto += "\n*TOTAL: $" + total + "*";
+
+            return texto;
         }
     }
 }

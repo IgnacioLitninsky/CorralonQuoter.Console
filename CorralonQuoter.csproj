@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CorralonQuoter.Domain\CorralonQuoter.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

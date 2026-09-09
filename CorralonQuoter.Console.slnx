@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="../CorralonQuoter.Domain/CorralonQuoter.Domain.csproj" Id="b325444f-da07-445d-8005-c4eabda13f02" />
+  <Project Path="../WinFormsApp1/CorralonQuoter.UI.csproj" Id="5daca835-8bac-49fd-aca9-a53943234f1f" />
   <Project Path="CorralonQuoter.csproj" />
 </Solution>

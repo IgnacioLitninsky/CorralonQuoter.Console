@@ -1,4 +1,4 @@
-﻿namespace CorralonQuoter.Console
+﻿namespace CorralonQuoter
 {
     internal class Program
     {

@@ -1,11 +1,11 @@
-﻿namespace CorralonQuoter
+﻿using System.Linq;
+
+namespace CorralonQuoter
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-
             List<Producto> catalogo = new List<Producto>();
 
             catalogo.Add(new Producto
@@ -63,7 +63,16 @@
                 Stock = 10m
             });
 
-            foreach (var p in catalogo)
+            string busqueda = "pila";
+
+            var resultados = catalogo
+                .Where(p => p.Descripcion.ToLower()
+                    .Split(' ')
+                    .Contains(busqueda.ToLower()))
+                .ToList();
+
+            Console.WriteLine("Resultados para '" + busqueda + "':");
+            foreach (var p in resultados)
             {
                 Console.WriteLine(p.Descripcion + " - $" + p.Precio);
             }
